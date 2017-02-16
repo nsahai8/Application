@@ -1,0 +1,37 @@
+package ai.niki.service.impl;
+
+import java.io.Serializable;
+import java.util.List;
+
+import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import ai.niki.domain.User;
+import ai.niki.repository.UserRepository;
+import ai.niki.service.UserService;
+
+@Service
+public class UserServiceImpl extends AbstractDataServiceImpl<ObjectId, Serializable>implements UserService {
+
+	private UserRepository userRepository;
+	
+	@Autowired
+	public UserServiceImpl(UserRepository repository) {
+		super(repository);
+		this.userRepository = repository ;
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean isValidUser(String emailId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

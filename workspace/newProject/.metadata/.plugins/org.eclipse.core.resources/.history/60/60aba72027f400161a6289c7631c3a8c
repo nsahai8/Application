@@ -1,0 +1,10 @@
+package ai.niki.domain;
+
+/**
+ * @author niharika
+ */
+public class User {
+	@Id
+	String name;
+	String emailId;
+}

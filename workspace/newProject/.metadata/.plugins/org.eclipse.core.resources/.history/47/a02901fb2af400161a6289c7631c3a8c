@@ -1,0 +1,15 @@
+package ai.niki.domain;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+/**
+ * @author niharika
+ */
+@Document
+public class User {
+	@Id
+	String name;
+	String emailId;
+	
+}

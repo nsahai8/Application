@@ -1,0 +1,10 @@
+package ai.niki.service;
+
+import java.util.List;
+
+import ai.niki.domain.User;
+
+public interface UserService {
+	public List<User> getAllUsers();
+	public Boolean isValidUser(String emailId);
+}

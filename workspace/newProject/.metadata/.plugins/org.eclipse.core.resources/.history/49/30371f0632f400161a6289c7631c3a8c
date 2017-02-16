@@ -1,0 +1,5 @@
+package ai.niki.service;
+
+public interface User {
+	
+}

@@ -1,0 +1,31 @@
+package ai.niki.service.impl;
+
+import java.io.Serializable;
+import java.util.List;
+
+import org.bson.types.ObjectId;
+import org.springframework.data.repository.PagingAndSortingRepository;
+
+import ai.niki.domain.User;
+import ai.niki.service.UserService;
+
+public class UserServiceImpl extends AbstractDataServiceImpl<ObjectId, Serializable>implements UserService {
+
+	public UserServiceImpl(PagingAndSortingRepository<ObjectId, Serializable> repository) {
+		super(repository);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean isValidUser(String emailId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

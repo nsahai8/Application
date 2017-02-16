@@ -1,0 +1,5 @@
+package ai.niki.service.impl;
+
+public class UserServiceImpl {
+
+}

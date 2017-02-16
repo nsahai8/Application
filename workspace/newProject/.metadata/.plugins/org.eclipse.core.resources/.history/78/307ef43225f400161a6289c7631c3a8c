@@ -1,0 +1,8 @@
+package ai.niki.domain;
+
+/**
+ * @author niharika
+ */
+public class User {
+
+}

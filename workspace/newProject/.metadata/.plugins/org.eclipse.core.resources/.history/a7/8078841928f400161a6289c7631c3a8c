@@ -1,0 +1,17 @@
+package ai.niki.config;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+/**
+ * @author niharika
+ */
+@Configuration
+@EnableTransactionManagement
+@ComponentScan({ "ai.niki.*" })
+@PropertySource(value = { "classpath:app.properties" })
+public class HibernateConfiguration {
+
+}

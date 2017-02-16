@@ -1,0 +1,11 @@
+/**
+ * 
+ */
+package ai.niki.config;
+
+/**
+ * @author niharika
+ */
+public class HibernateConfiguration {
+
+}

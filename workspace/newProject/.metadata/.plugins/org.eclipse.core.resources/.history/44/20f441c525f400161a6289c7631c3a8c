@@ -1,0 +1,10 @@
+package ai.niki.domain;
+import org.springframework.data.*;
+/**
+ * @author niharika
+ */
+public class User {
+	
+	String name;
+	String emailId;
+}

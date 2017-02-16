@@ -1,0 +1,12 @@
+package ai.niki.domain;
+
+import java.lang.annotation.Inherited;
+
+/**
+ * @author niharika
+ */
+public class User {
+	
+	String name;
+	String emailId;
+}

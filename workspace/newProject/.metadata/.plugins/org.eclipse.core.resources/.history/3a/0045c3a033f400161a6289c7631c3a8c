@@ -1,0 +1,9 @@
+package ai.niki.repository;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+@Repository
+public class UserRepository extends MongoRepository<>  {
+
+}

@@ -1,0 +1,67 @@
+package ai.niki.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.PropertySource;
+
+@Configuration
+@PropertySource(value = { "classpath:nosql.properties" })
+@ImportResource({ "classpath:com/snapdeal/assortment/root/spring/mongo-config.xml" })
+public class MongoCofig {
+	@Value("#{environment['mongo_host']}")
+	private String hosts;
+
+	@Value("#{environment['mongo_port']}")
+	private Integer port;
+
+	@Value("#{environment['mongo_database']}")
+	private String database;
+
+	@Bean
+	public MongoClient mongoClient() {
+		LOGGER.info("Creating mongo instance for host:{}, port:{}, database:{}", hosts, port, database);
+		List<String> hostList = Arrays.asList(hosts.split(","));
+		List<ServerAddress> serverAddressList = new ArrayList<>();
+		for (String host : hostList) {
+			serverAddressList.add(new ServerAddress(host, port));
+		}
+		MongoClientOptions mongoClientOptions = MongoClientOptions.builder().build();
+		return new MongoClient(serverAddressList, mongoClientOptions);
+	}
+
+	@Bean
+	public MongoDbFactory mongoDbFactory() {
+		return new SimpleMongoDbFactory(mongoClient(), database);
+	}
+
+	@Bean
+	public MongoTemplate mongoTemplate() {
+		MongoTypeMapper mongoTypeMapper = new DefaultMongoTypeMapper(null);
+		MongoDbFactory mongoDbFactory = mongoDbFactory();
+		DbRefResolver dbRefResolver = new DefaultDbRefResolver(mongoDbFactory);
+		MappingMongoConverter mappingMongoConverter = new MappingMongoConverter(dbRefResolver,
+				new MongoMappingContext());
+		mappingMongoConverter.setTypeMapper(mongoTypeMapper);
+		MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory, mappingMongoConverter);
+		return mongoTemplate;
+	}
+
+	@Bean(name = "secondaryMongoTemplate")
+	public MongoTemplate secondaryMongoTemplate() {
+		MongoTypeMapper mongoTypeMapper = new DefaultMongoTypeMapper(null);
+		MongoDbFactory mongoDbFactory = mongoDbFactory();
+		DbRefResolver dbRefResolver = new DefaultDbRefResolver(mongoDbFactory);
+		MappingMongoConverter mappingMongoConverter = new MappingMongoConverter(dbRefResolver,
+				new MongoMappingContext());
+		mappingMongoConverter.setTypeMapper(mongoTypeMapper);
+		MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory, mappingMongoConverter);
+		mongoTemplate.setReadPreference(ReadPreference.secondary());
+		return mongoTemplate;
+	}
+
+	@Bean
+	public ScraperProductInfoCascadeSaveMongoEventListener userCascadingMongoEventListener() {
+		return new ScraperProductInfoCascadeSaveMongoEventListener();
+	}
+
+}

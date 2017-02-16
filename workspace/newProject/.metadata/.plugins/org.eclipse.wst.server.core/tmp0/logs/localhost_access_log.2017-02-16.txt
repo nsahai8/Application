@@ -1,0 +1,13 @@
+127.0.0.1 - - [16/Feb/2017:16:39:35 +0530] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [16/Feb/2017:16:39:36 +0530] "GET /ChatApplication/ HTTP/1.1" 404 1026
+127.0.0.1 - - [16/Feb/2017:16:40:47 +0530] "GET /ChatApplication/createUser HTTP/1.1" 404 1046
+127.0.0.1 - - [16/Feb/2017:17:24:02 +0530] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [16/Feb/2017:17:24:03 +0530] "GET /ChatApplication/ HTTP/1.1" 404 1026
+127.0.0.1 - - [16/Feb/2017:17:24:05 +0530] "GET /ChatApplication/ HTTP/1.1" 404 1026
+127.0.0.1 - - [16/Feb/2017:17:24:12 +0530] "GET /ChatApplication/createUser HTTP/1.1" 404 1046
+127.0.0.1 - - [16/Feb/2017:17:24:30 +0530] "GET /ChatApplication/createUser HTTP/1.1" 404 1046
+127.0.0.1 - - [16/Feb/2017:18:03:30 +0530] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [16/Feb/2017:18:03:31 +0530] "GET /ChatApplication/ HTTP/1.1" 404 1026
+127.0.0.1 - - [16/Feb/2017:18:11:06 +0530] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [16/Feb/2017:18:11:07 +0530] "GET /ChatApplication/ HTTP/1.1" 404 1026
+127.0.0.1 - - [16/Feb/2017:18:11:24 +0530] "GET /ChatApplication/createUser HTTP/1.1" 404 1046
