@@ -7,6 +7,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 @Repository("userRepository")
+
 public interface UserRepository extends MongoRepository<User, ObjectId>  {
 
 	User findByName(String name);

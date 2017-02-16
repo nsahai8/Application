@@ -3,9 +3,10 @@ package ai.niki.service.impl;
 import java.io.Serializable;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Service;
 
 import ai.niki.service.AbstractDataService;
-
+@Service
 public class AbstractDataServiceImpl<T,ID extends Serializable>  implements AbstractDataService<T,ID>{
     private PagingAndSortingRepository<T,ID> repository;
 
@@ -15,11 +16,6 @@ public class AbstractDataServiceImpl<T,ID extends Serializable>  implements Abst
 
     public T findById(ID id){
         return repository.findOne(id);
-    }
-
-    @Override
-    public Iterable<T> findAll() {
-        return repository.findAll();
     }
 
     public T save(T t){
@@ -41,5 +37,10 @@ public class AbstractDataServiceImpl<T,ID extends Serializable>  implements Abst
     public long count(){
         return repository.count();
     }
+
+	public Iterable<T> findAll() {
+		
+		return repository.findAll();
+	}
 
 }

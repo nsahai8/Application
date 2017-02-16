@@ -21,13 +21,12 @@ public class UserServiceImpl extends AbstractDataServiceImpl<User, ObjectId>impl
 		super(repository);
 		this.userRepository = repository ;
 	}
-	@Override
+	
 	public List<User> getAllUsers() {
 		List<User> allUsers = userRepository.findAll();
 		return allUsers;
 	}
 
-	@Override
 	public Boolean isValidUser(String emailId) {
 		if(userRepository.findByEmail(emailId) != null){
 			return true;

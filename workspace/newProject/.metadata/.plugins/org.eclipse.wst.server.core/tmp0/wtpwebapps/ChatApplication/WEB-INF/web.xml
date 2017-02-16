@@ -1,0 +1,6 @@
+<web-app>
+    <display-name>Application</display-name>
+    <session-config>
+        <session-timeout>240</session-timeout>
+    </session-config>
+</web-app>

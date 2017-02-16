@@ -1,0 +1,81 @@
+package ai.niki.config;
+
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
+
+import java.util.Collection;
+import java.util.List;
+
+@EnableWebMvc
+@Configuration
+@ComponentScan("ai.niki.controller")
+public class WebMvcConfig extends WebMvcConfigurerAdapter{
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**");
+    }
+
+    @Bean
+    public ObjectMapper objectMapper(){
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setDefaultPrettyPrinter(new DefaultPrettyPrinter());
+        objectMapper.configure(JsonGenerator.Feature.ESCAPE_NON_ASCII, false);
+        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,false);
+        AnnotationIntrospector jacksonAnnotationIntrospector = new JacksonAnnotationIntrospector();
+        objectMapper.setAnnotationIntrospector(jacksonAnnotationIntrospector);
+        return objectMapper;
+    }
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        super.addFormatters(registry);
+        registry.removeConvertible(String.class, Collection.class);
+        registry.removeConvertible(String.class,Object[].class);
+        //registry.addFormatterForFieldType(Collection.class, Formatter);
+    }
+
+    @Bean
+    public MappingJackson2HttpMessageConverter mappingJacksonHttpMessageConverter() {
+        MappingJackson2HttpMessageConverter mappingJacksonHttpMessageConverter = new MappingJackson2HttpMessageConverter();
+        mappingJacksonHttpMessageConverter.setPrettyPrint(true);
+        mappingJacksonHttpMessageConverter.setObjectMapper(objectMapper());
+        return mappingJacksonHttpMessageConverter;
+    }
+
+    @Override
+    public void configureMessageConverters(final List<HttpMessageConverter<?>> converters) {
+        converters.add(mappingJacksonHttpMessageConverter());
+    }
+
+    @Bean
+    public ViewResolver viewResolver() {
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setViewClass(JstlView.class);
+        viewResolver.setPrefix("/WEB-INF/jsp/");
+        viewResolver.setSuffix(".jsp");
+        return viewResolver;
+    }
+
+    /*
+    * Configure ResourceHandlers to serve static resources like CSS/ Javascript etc...
+    */
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/js/**").addResourceLocations("/resource/js/");
+        registry.addResourceHandler("/css/**").addResourceLocations("/resource/css/");
+    }
+}
+

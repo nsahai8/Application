@@ -1,11 +1,15 @@
 package ai.niki.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import ai.niki.domain.User;
 import ai.niki.service.UserService;
@@ -33,6 +37,15 @@ public class UserController {
 		userService.save(user);
 		return true;
 		
+	}
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public ModelAndView helloWorld( ModelMap model ) {
+	System.out.println("here");
+	ModelAndView modelAndView = new ModelAndView("index");
+	modelAndView.addObject("users", "hi" );
+	return modelAndView;
+
 	}
 
 }
