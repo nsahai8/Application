@@ -1,0 +1,8 @@
+ai/niki/service/AbstractDataService.class
+ai/niki/service/AppService.class
+ai/niki/model/ChatMessage.class
+ai/niki/service/impl/AppServiceImpl.class
+ai/niki/repositories/UserRepository.class
+ai/niki/controller/AppController.class
+ai/niki/service/impl/AbstractDataServiceImpl.class
+ai/niki/model/User.class
