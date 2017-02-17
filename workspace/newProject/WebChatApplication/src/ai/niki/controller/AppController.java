@@ -16,13 +16,19 @@ public class AppController {
 	@Autowired
 	private AppService appService;
 	
+	@RequestMapping("/")
+	public ModelAndView welcomePage() {
+		System.out.println("in index hit ");
+		return new ModelAndView("welcome");
+	}
+	
 	@RequestMapping("/welcome")
 	public ModelAndView helloWorld() {
  
 		System.out.println("hi");
 		String message = "<br><div style='text-align:center;'>"
 				+ "<h3>********** Hello World, Spring MVC Tutorial</h3>This message is coming from CrunchifyHelloWorld.java **********</div><br><br>";
-		return new ModelAndView("welcome", "message", message);
+		return new ModelAndView("welcome1", "message", message);
 	}
 	@RequestMapping("/createUser")
 	public ModelAndView createUser() {
@@ -31,7 +37,7 @@ public class AppController {
 		user.setName("123");
 		appService.save(user);
 		System.out.println("done");
-		return new ModelAndView("welcome", "message","hi");
+		return new ModelAndView("welcome1", "message","hi");
 	}
 	
 	@RequestMapping("/getAllContacts")
@@ -40,7 +46,7 @@ public class AppController {
 		for(User user :allUsers){
 			System.out.println(user.getEmailId());
 		}
-		return new ModelAndView("welcome", "message","hi");
+		return new ModelAndView("welcome1", "message","hi");
 	}
 	
 }

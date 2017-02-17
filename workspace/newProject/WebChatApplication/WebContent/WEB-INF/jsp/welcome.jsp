@@ -1,10 +1,9 @@
 <html>
 <head>
-<title>Spring MVC Tutorial by Crunchify - Hello World Spring MVC
-	Example</title>
+<title>Web Chat Application</title>
 
 </style>
 </head>
-<body>Hi
+<body>Welcome
 </body>
 </html>
