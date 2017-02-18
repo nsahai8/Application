@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
@@ -20,15 +21,23 @@ import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper;
 import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
 import org.springframework.data.mongodb.core.convert.MongoTypeMapper;
 import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.ServerAddress;
 
+@EnableMongoRepositories(basePackages = "ai.niki.repository")
+@EnableWebMvc
+@ComponentScan
 @Configuration
 @PropertySource(value = { "classpath:nosql.properties" })
 @ImportResource({ "classpath:mongo-config.xml" })
 public class MongoConfig {
+	static{
+		System.out.println("MongoConfig");
+	}
 	@Value("#{environment['mongo_host']}")
 	private String hosts;
 

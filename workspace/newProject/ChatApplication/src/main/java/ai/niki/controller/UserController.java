@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ai.niki.domain.User;
 import ai.niki.service.UserService;
 
-@Controller
+@Controller("/start")
 public class UserController {
 	
 	@Autowired

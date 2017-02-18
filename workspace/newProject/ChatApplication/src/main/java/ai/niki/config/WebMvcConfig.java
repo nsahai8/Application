@@ -19,42 +19,9 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan("ai.niki.controller")
 public class WebMvcConfig extends WebMvcConfigurerAdapter{
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**");
-    }
-
-    /*@Bean
-    public ObjectMapper objectMapper(){
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setDefaultPrettyPrinter(new DefaultPrettyPrinter());
-        objectMapper.configure(JsonGenerator.Feature.ESCAPE_NON_ASCII, false);
-        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,false);
-        AnnotationIntrospector jacksonAnnotationIntrospector = new JacksonAnnotationIntrospector();
-        objectMapper.setAnnotationIntrospector(jacksonAnnotationIntrospector);
-        return objectMapper;
-    }*/
-
-    @Override
-    public void addFormatters(FormatterRegistry registry) {
-        super.addFormatters(registry);
-        registry.removeConvertible(String.class, Collection.class);
-        registry.removeConvertible(String.class,Object[].class);
-        //registry.addFormatterForFieldType(Collection.class, Formatter);
-    }
-
-    /*@Bean
-    public MappingJackson2HttpMessageConverter mappingJacksonHttpMessageConverter() {
-        MappingJackson2HttpMessageConverter mappingJacksonHttpMessageConverter = new MappingJackson2HttpMessageConverter();
-        mappingJacksonHttpMessageConverter.setPrettyPrint(true);
-        mappingJacksonHttpMessageConverter.setObjectMapper(objectMapper());
-        return mappingJacksonHttpMessageConverter;
-    }*/
-
-    /*@Override
-    public void configureMessageConverters(final List<HttpMessageConverter<?>> converters) {
-        converters.add(mappingJacksonHttpMessageConverter());
-    }*/
+	static{
+		System.out.println("WebMvcConfig");
+	}
 
     @Bean
     public ViewResolver viewResolver() {
@@ -65,13 +32,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
         return viewResolver;
     }
 
-    /*
-    * Configure ResourceHandlers to serve static resources like CSS/ Javascript etc...
-    */
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/js/**").addResourceLocations("/resource/js/");
-        registry.addResourceHandler("/css/**").addResourceLocations("/resource/css/");
-    }
+    
 }
 
